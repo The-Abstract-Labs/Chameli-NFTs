@@ -1,0 +1,8 @@
+.backgroundImage {
+    background-image: url('/background.png');
+    background-size: cover;
+    background-position: center center;
+    min-height: 100vh;
+    background-color: rgba(0,0,0,0.63); 
+  }
+  
