@@ -6,7 +6,7 @@ import MyHeader from "@/components/myheader";
 import CWbutton from "@/components/cw-button";
 import React, { useState } from "react";
 import { Web3Button } from "@web3modal/react";
-import { mintNFT } from "../../utils/interact.js";
+import { mintNFT } from "../utils/interact.js";
 
 const inter = Inter({ subsets: ["latin"] });
 

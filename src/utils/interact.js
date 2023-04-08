@@ -1,7 +1,7 @@
 // const alchemyKey = process.env.REACT_APP_ALCHEMY_KEY;
+
 const alchemyKey =
-  "https://eth-ropsten.alchemyapi.io/v2/VDFRZtv7lpxPlG2fl0PUeNPw7mWSsQ3B";
-console.log(alchemyKey);
+  "https://polygon-mumbai.g.alchemy.com/v2/RTsvhorGnm-S58Hbu1ehNP_BzXidq_4D";
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
 const web3 = createAlchemyWeb3(alchemyKey);
 import { pinJSONToIPFS } from "./pinata.js";
@@ -9,6 +9,7 @@ import { pinJSONToIPFS } from "./pinata.js";
 const contractABI = require("./MyNFT.json");
 // const abi = fs.readFileSync("./MyNFT.json");
 // const contractABI = JSON.parse(abi);
+// const contractAddress = process.env.CONTRACT_ADDRESS;
 const contractAddress = "0xDDa67C91a31c1C2Aeb0536add0c77fb16Dd5DEb6";
 
 export const mintNFT = async () => {
@@ -49,8 +50,8 @@ export const mintNFT = async () => {
     data: window.contract.methods
       .mintNFT(window.ethereum.selectedAddress, tokenURI)
       .encodeABI(), //make call to NFT smart contract,
-    gasLimit: 100000,
-    gas: "0x186A0",
+    // gasLimit: 100000,
+    // gas: "0x186A0",
   };
 
   //sign transaction via MetaMask
