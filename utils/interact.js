@@ -48,7 +48,9 @@ export const mintNFT = async () => {
     from: window.ethereum.selectedAddress, // must match user's active address.
     data: window.contract.methods
       .mintNFT(window.ethereum.selectedAddress, tokenURI)
-      .encodeABI(), //make call to NFT smart contract
+      .encodeABI(), //make call to NFT smart contract,
+    gasLimit: 100000,
+    gas: "0x186A0",
   };
 
   //sign transaction via MetaMask
