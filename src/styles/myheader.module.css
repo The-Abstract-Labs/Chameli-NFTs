@@ -1,0 +1,16 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+    padding: 12px;
+    position: relative;
+    align-items: center;
+    background-color: black;
+}
+
+.logoo{
+    display: inline;
+}
+.myheader{
+    color :white;
+}
