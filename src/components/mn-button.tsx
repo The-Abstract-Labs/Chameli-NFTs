@@ -3,7 +3,7 @@ import styles from '../styles/button.module.css'
 function MNbutton() {
   return (
     <div className={styles.button}>
-    <a>Mint NFT</a>
+    <a >Mint NFT</a>
     </div>
   )
 }
