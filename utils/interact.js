@@ -1,10 +1,14 @@
-require("dotenv").config();
-const alchemyKey = process.env.REACT_APP_ALCHEMY_KEY;
+// const alchemyKey = process.env.REACT_APP_ALCHEMY_KEY;
+const alchemyKey =
+  "https://eth-ropsten.alchemyapi.io/v2/VDFRZtv7lpxPlG2fl0PUeNPw7mWSsQ3B";
+console.log(alchemyKey);
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
 const web3 = createAlchemyWeb3(alchemyKey);
 import { pinJSONToIPFS } from "./pinata.js";
 
-const contractABI = require("../contract-abi.json");
+const contractABI = require("./MyNFT.json");
+// const abi = fs.readFileSync("./MyNFT.json");
+// const contractABI = JSON.parse(abi);
 const contractAddress = "0xDDa67C91a31c1C2Aeb0536add0c77fb16Dd5DEb6";
 
 export const mintNFT = async () => {
@@ -36,7 +40,7 @@ export const mintNFT = async () => {
   const tokenURI = pinataResponse.pinataUrl;
 
   //load smart contract
-  window.contract = await new web3.eth.Contract(contractABI, contractAddress); //loadContract();
+  window.contract = new web3.eth.Contract(contractABI.abi, contractAddress); //loadContract();
 
   //set up your Ethereum transaction
   const transactionParameters = {
