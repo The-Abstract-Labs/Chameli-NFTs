@@ -5,6 +5,7 @@ const alchemyKey =
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
 const web3 = createAlchemyWeb3(alchemyKey);
 import { pinJSONToIPFS } from "./pinata.js";
+import { useContractWrite, usePrepareContractWrite } from "wagmi";
 
 const contractABI = require("./MyNFT.json");
 // const abi = fs.readFileSync("./MyNFT.json");
@@ -12,7 +13,7 @@ const contractABI = require("./MyNFT.json");
 // const contractAddress = process.env.CONTRACT_ADDRESS;
 const contractAddress = "0xDDa67C91a31c1C2Aeb0536add0c77fb16Dd5DEb6";
 
-export const mintNFT = async () => {
+export const mintNFT = async (address) => {
   //error handling
   let url = "./publicgiphy.gif";
   let name = "Cool NFT";
@@ -41,14 +42,19 @@ export const mintNFT = async () => {
   const tokenURI = pinataResponse.pinataUrl;
 
   //load smart contract
-  window.contract = new web3.eth.Contract(contractABI.abi, contractAddress); //loadContract();
+  const contract = usePrepareContractWrite({
+    address: contractAddress,
+    abi: contractABI.abi,
+    functionName: 'mintNFT'
+  });
+  
 
   //set up your Ethereum transaction
   const transactionParameters = {
     to: contractAddress, // Required except during contract publications.
-    from: window.ethereum.selectedAddress, // must match user's active address.
+    from: address, // must match user's active address.
     data: window.contract.methods
-      .mintNFT(window.ethereum.selectedAddress, tokenURI)
+      .mintNFT(address, tokenURI)
       .encodeABI(), //make call to NFT smart contract,
     // gasLimit: 100000,
     // gas: "0x186A0",

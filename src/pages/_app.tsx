@@ -22,7 +22,7 @@ const projectId = "54688879d83da71314f4f986100929fd";
 const { provider } = configureChains(chains, [w3mProvider({ projectId })]);
 const wagmiClient = createClient({
   autoConnect: true,
-  connectors: w3mConnectors({ projectId, version: 1, chains }),
+  connectors: w3mConnectors({ projectId, version: 2, chains }),
   provider,
 });
 const ethereumClient = new EthereumClient(wagmiClient, chains);

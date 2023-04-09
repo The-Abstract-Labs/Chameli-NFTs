@@ -7,10 +7,13 @@ import CWbutton from "@/components/cw-button";
 import React, { useState } from "react";
 import { Web3Button } from "@web3modal/react";
 import { mintNFT } from "../utils/interact.js";
+import { useAccount } from 'wagmi';
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const { address } = useAccount();
+
   return (
     <div className="h-24 min-h-full">
       <MyHeader />
@@ -18,7 +21,7 @@ export default function Home() {
       <div className={styles.box}>
         <img src="/giphy.gif" alt="" className={styles.giphy} />
         <Web3Button />
-        <div className={styles_btn.button} onClick={mintNFT}>
+        <div className={styles_btn.button} onClick={() => mintNFT(address)}>
           <a>Mint NFT</a>
         </div>
       </div>
